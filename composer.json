@@ -1,0 +1,11 @@
+{
+    "name": "ivanzhernovei124/1_loja",
+    "description": "Loja Online PHP",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Ivanzhernovei124\\1Loja\\": "src/"
+        }
+    },
+    "require": {}
+}

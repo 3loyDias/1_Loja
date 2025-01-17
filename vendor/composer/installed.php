@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'ivanzhernovei124/1_loja',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '113d087acfdcffa239fb88ebee59c1be4fcb4493',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'ivanzhernovei124/1_loja' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '113d087acfdcffa239fb88ebee59c1be4fcb4493',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -1,11 +1,18 @@
 {
     "name": "ivanzhernovei124/1_loja",
-    "description": "Loja Online PHP",
+    "description": "Loja Online em PHP",
     "type": "project",
+    "license": "1337",
     "autoload": {
         "psr-4": {
-            "Ivanzhernovei124\\1Loja\\": "src/"
+            "Ivanzhernovei124\\1Loja\\": "src/",
+            "core\\": "core/"
         }
     },
+    "authors": [
+        {
+            "name": "Ivan"
+        }
+    ],
     "require": {}
 }

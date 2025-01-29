@@ -4,6 +4,18 @@ $rotas = [
     'inicio' => 'main@index',
     'loja' => 'main@loja', 
     'carrinho' => 'loja@carrinho',
+
+    //Clientes
+    'cli_listar' => 'main@Cli_listar',  
+
+
+    //Cabelo
+
+
+    //Marcações
+
+
+
 ];
 $acao = 'inicio';
 

@@ -1,27 +1,32 @@
 <?php
 
 namespace core\controllers;
-use core\classes\functions;
+use core\classes\store;
 
 class Main 
 {
     public function index()
     {
-        $clientes = ["João", "Maria", "José"];
-
-        $dados = [
-            'titulo' => 'Este e o titulo',
-            'clientes' => ['João', 'Maria', 'José']
-        ];
+        
         /*
             1 - Carregar e tratar dados do banco de dados
             2 - Apresentar o Layout (views)
         */
-        functions::Layout([
+        
+        // Listagem dos clientes
+
+
+        // Carregar e tratar dados do banco de dados
+
+        // Apresentar o Layout (views)
+        
+        store::Layout([
             'layouts/html_header',
-            'pagina_inicial',
+            'layouts/header',
+            'loja',
+            'layouts/footer',
             'layouts/html_footer',
-        ], $dados);
+        ]);
     }
 
     public function loja()

@@ -3,7 +3,7 @@
         'name' => 'ivanzhernovei124/1_loja',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '113d087acfdcffa239fb88ebee59c1be4fcb4493',
+        'reference' => '963b735325217cd098c7bd12787ef45f8e0030b0',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'ivanzhernovei124/1_loja' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '113d087acfdcffa239fb88ebee59c1be4fcb4493',
+            'reference' => '963b735325217cd098c7bd12787ef45f8e0030b0',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

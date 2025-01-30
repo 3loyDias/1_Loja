@@ -5,13 +5,13 @@ use core\classes\store;
 
 class Loja
 {
-    public function index()
+    public function carrinho()
     {
         // Apresenta a pagina da loja 
         store::Layout([
             'layouts/html_header',
             'layouts/header',
-            'inicio',
+            'carrinho',
             'layouts/footer',
             'layouts/html_footer',
         ]);

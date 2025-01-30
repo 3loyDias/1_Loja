@@ -3,7 +3,6 @@
 namespace core\classes;
 class store
 {
-
     public static function Layout($estruturas, $dados=NULL)
     {
         if (!is_array($estruturas)) {
@@ -18,6 +17,11 @@ class store
             include("../core/views/$estrutura.php");
         }
 
+    }
+
+    public static function clienteLogado()
+    {
+        return isset($_SESSION['cliente']);
     }
     
 

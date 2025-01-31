@@ -12,7 +12,7 @@
                 <!-- password - senha1 -->
                 <div class="form-group">
                     <label>Senha</label>
-                    <input type="password" name="text_senha1" placeholder="Senha"
+                    <input type="password" name="text_senha_1" placeholder="Senha"
                         class="form-control" required>
                 </div>
                 <!-- password - senha2 -->
@@ -49,6 +49,15 @@
                 <div class="my-4">
                     <input type="submit" value="Criar Conta" class="btn btn-primary">
                 </div>
+
+                <?php
+                if (isset($_GET['erro'])) : ?>
+                    <div class="alert alert-danger" text-center p-2>
+                        <?= $_SESSION['erro'] ?>
+                        <?php unset($_SESSION['erro']); ?>
+                    </div>
+                <?php endif;
+                ?>
             </form>
         </div>
     </div>

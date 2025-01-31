@@ -14,7 +14,7 @@ if (isset($_GET['a'])) {
         $acao = 'inicio';
     } else {
         $acao = $_GET['a'];
-    }
+    } 
 }
 
 $partes = explode('@', $rotas[$acao]);

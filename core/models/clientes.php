@@ -37,6 +37,7 @@ class Clientes
     //CLIENTE PRONTO PARA SER INSERIDO NA BD
     public function registrar_cliente()
     {
+  
         $bd = new Database();
 
         $purl = store::criarHash();

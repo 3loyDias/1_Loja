@@ -24,15 +24,15 @@ class EnviarEmail
 
         try {
             //Server settings
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+            $mail->SMTPDebug = SMTP::DEBUG_OFF;                      //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
             $mail->Host       = EMAIL_HOST;                  //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
             $mail->Username   = EMAIL_FROM;                     //SMTP username
             $mail->Password   = EMAIL_PASS;                             //SMTP password
-            $mail->SMTPSecure = 'tls'; //PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
             $mail->Port       = EMAIL_PORT;                            //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-
+            $mail->CharSet = 'UTF-8';
             //Recipients
             $mail->setFrom(EMAIL_FROM, APP_NAME);
             // Colocar email do cliente
@@ -57,10 +57,8 @@ class EnviarEmail
             $mail->Body = $html;
 
             $mail->send();
-            die('enviou');
             return true;
         } catch (Exception $e) {
-            die('falhou');
             return false;
         }
     }

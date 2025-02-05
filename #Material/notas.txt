@@ -1,4 +1,4 @@
-db // 
+// db
 ALTER TABLE `php_store`.`clientes` 
 ADD COLUMN `senha` VARCHAR(250) NULL AFTER `email`,
 ADD COLUMN `nome_completo` VARCHAR(250) NULL AFTER `senha`,
@@ -12,3 +12,24 @@ ADD COLUMN `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURREN
 ADD COLUMN `deleted_at` DATETIME NULL DEFAULT NULL AFTER `updated_at`,
 CHANGE COLUMN `id_cliente` `id_cliente` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
 CHANGE COLUMN `nome` `email` VARCHAR(50) CHARACTER SET 'utf8mb4' NULL DEFAULT NULL;
+
+// config para mexer
+<?php
+define("APP_NAME", "PROJETO IVAN");
+define("APP_VERSION", "1.0.0");
+
+
+// MYSQL 
+define("MYSQL_SERVER", "");
+define("MYSQL_DATABASE", "");
+define("MYSQL_USER", "");
+define("MYSQL_PASS", "");
+define('MYSQL_CHARSET', '');
+
+// EMAIL
+
+define("EMAIL_HOST", "");
+define("EMAIL_FROM", "");
+define("EMAIL_PASS", "");
+define("EMAIL_PORT", 465);
+define('BASE_URL', 'http://localhost/');

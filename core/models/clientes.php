@@ -37,7 +37,7 @@ class Clientes
     //CLIENTE PRONTO PARA SER INSERIDO NA BD
     public function registrar_cliente()
     {
-  
+
         $bd = new Database();
 
         $purl = store::criarHash();
@@ -54,9 +54,43 @@ class Clientes
             ':ativo' => 0,
         ];
         $bd->insert(
-            "INSERT INTO clientes VALUES (0, :email, :senha, :nome_completo, :morada, :cidade, :telefone, :purl, :ativo, NOW(), NOW(), NULL)", $parametros);
+            "INSERT INTO clientes VALUES (0, :email, :senha, :nome_completo, :morada, :cidade, :telefone, :purl, :ativo, NOW(), NOW(), NULL)",
+            $parametros
+        );
         return $purl;
     }
 
-    //============================ CRIAR CLIENTE  ============================
+    //============================ VALIDAR EMAIL COM PURL ============================
+    public function validar_email($purl)
+    {
+
+        $bd = new Database();
+        $parametros = [
+            ':purl' => $purl
+        ];
+        $resultados = $bd->select(
+            'SELECT * FROM clientes WHERE purl = :purl',
+            $parametros
+        );
+
+        // Verifica se foi encontrado o cliente
+        if (count($resultados) != 1) {
+            return false;
+        }
+
+        // Fui encontrado o Purl
+        $id_cliente = $resultados[0]->id_cliente;
+
+        $parametros = [
+            ':id_cliente' => $id_cliente
+        ];
+
+        // echo '<pre>';
+        // print_r($resultados);
+        // die('AQUI');
+
+        //Atualiza o cliente na BD para ativo
+        $bd->update("UPDATE clientes SET purl = NULL,  ativo=1, updated_at=NOW() WHERE id_cliente = :id_cliente ", $parametros);
+        return true;
+    }
 };

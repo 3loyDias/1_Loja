@@ -91,9 +91,6 @@ class Main
         }
         //*********************************************************************
 
-        // CLIENTE PRONTO PARA SER INSERIDO NA BD
-        // ASSIM VAI DEVOLVER O VALOR DO PURL
-        $purl = $cliente->registrar_cliente();
         //*********************************************************************
  
         // criar o link purl para enviar por email
@@ -111,4 +108,37 @@ class Main
             echo "Aconteceu um Erro";
         }
     }
+
+    //============================ CONFIRMAR EMAIL ============================
+
+    public function confirmar_email()
+    {
+        //*********************************************************************
+        // Verifica se o utilizador já está logado
+        if (store::clienteLogado()) {
+            $this->index();
+            return;
+        }
+        //Se existe na DB string com o purl do utilizador
+        if (!isset($_GET['purl'])) {
+            $this->index();
+            return;
+        }
+
+        //Verifica se o purl é valido 12 caracteres
+        $purl = $_GET['purl'];
+        if (strlen($_GET['purl']) != 12) {
+            $this->index();
+            return;
+        }
+
+        $cliente = new Clientes();
+        $resultado = $cliente->validar_email($purl);
+        if ($resultado) {
+            echo "Email Confirmado";
+        } else {
+            echo "Email Não Confirmado";
+        }
+    }
+        
 }

@@ -92,7 +92,7 @@ class Main
         //*********************************************************************
 
         //*********************************************************************
- 
+
         // criar o link purl para enviar por email
         // link será algo tipo "http://localhost/01-LOJA/public/?a=confirmar_email@$purl";"
         // INSERIDO NOVO CLIENTE NA BD E DEVOLVER O PURL 
@@ -100,7 +100,7 @@ class Main
         $purl = $cliente->registrar_cliente();
         //envio do email para o cliente
         $email = new EnviarEmail();
-    
+
         $resultado = $email->enviar_email_confirmacao_novo_cliente($email_cliente, $purl);
         if ($resultado) {
             store::Layout([
@@ -142,10 +142,102 @@ class Main
         $cliente = new Clientes();
         $resultado = $cliente->validar_email($purl);
         if ($resultado) {
-            echo "Email Confirmado";
+            store::Layout([
+                'layouts/html_header',
+                'layouts/header',
+                'confirmar_email_sucesso',
+                'layouts/footer',
+                'layouts/html_footer',
+            ]);
+            return;
         } else {
-            echo "Email Não Confirmado";
+            store::redirect();
         }
     }
-        
+
+    //============================ LOGIN ============================
+    public function login()
+    {
+        //*********************************************************************
+        // Verifica se o utilizador já está logado
+        if (store::clienteLogado()) {
+            $this->index();
+            return;
+        }
+        //*********************************************************************
+        // Apresenta a pagina de login
+        store::Layout([
+            'layouts/html_header',
+            'layouts/header',
+            'login_frm',
+            'layouts/footer',
+            'layouts/html_footer',
+        ]);
+    }
+
+    //============================ LOGIN SUBMIT ============================
+    public function login_submit()
+    {
+        /* Verificar se existe um utilizador logado */
+        if (Store::clienteLogado()) {
+            Store::redirect();
+            return;
+        }
+        // veriifca se foi efetuado um post do Formulário de Login
+        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+            if (Store::clienteLogado()) {
+                Store::redirect();
+                return;
+            }
+        }
+        // Validar campos
+        if (
+            !isset($_POST['text_utilizador']) ||
+            !isset($_POST['text_password']) || !filter_var(
+                trim($_POST['text_utilizador']),
+                FILTER_VALIDATE_EMAIL
+            )
+        ) {
+            // erro de preenchimento do form
+            $_SESSION['erro'] = 'Login Inválido';
+            store::redirect('login');
+            return;
+        }
+        // Prepara os dados para o model
+        $utilizador = trim(strtolower($_POST['text_utilizador']));
+        $password = trim($_POST['text_password']);
+        // Ir à bd (ver login)
+        // carrega o model e verifica se o login é correto
+        $cliente = new Clientes();
+        // chama model Clientes, validar_login
+        // Para verificar user e pass
+        $resultado = $cliente->validar_login($utilizador, $password);
+        // analisa o resultado
+        if (is_bool($resultado)) {
+            //Login inválido
+            $_SESSION['erro'] = 'Login Inválido';
+            Store::redirect('login');
+            return;
+        } else {
+            // Login Válido, criar sessão cliente
+            // Coloca os dados na sessão / Criar sessão do cliente
+            // Optamos por estes três códigos na sessão
+            $_SESSION['cliente'] = $resultado->id_cliente;
+            $_SESSION['utilizador'] = $resultado->email;
+            $_SESSION['nome_cliente'] = $resultado->nome_completo;
+            // redirecionar para o inicio
+            Store::redirect();
+        }
+    }
+
+    //============================ LOGOUT ============================
+    public function logout()
+    {
+        // Elimina a sessão
+        unset($_SESSION['cliente']);
+        unset($_SESSION['utilizador']);
+        unset($_SESSION['nome_cliente']);
+        // redirecionar para o inicio
+        Store::redirect();
+    }
 }

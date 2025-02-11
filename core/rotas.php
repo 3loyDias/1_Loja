@@ -3,10 +3,19 @@
 $rotas = [
     'inicio' => 'main@index',
     'loja' => 'main@loja', 
-    'carrinho' => 'loja@carrinho',
+
+    # Cliente
     'novo_cliente' => 'main@novo_cliente',
     'criar_cliente' => 'main@criar_cliente',
     'confirmar_email' => 'main@confirmar_email',
+    'confirmar_email_sucesso' => 'main@confirmar_email_sucesso',
+
+    # Login
+    'login' => 'main@login',
+    'login_submit' => 'main@login_submit',
+    'logout' => 'main@logout',
+
+    'carrinho' => 'main@carrinho',
 ];
 $acao = 'inicio';
 

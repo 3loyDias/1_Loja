@@ -6,5 +6,4 @@ use core\classes\store;
 
 class Loja
 {
-    
 }

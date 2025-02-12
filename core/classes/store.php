@@ -32,8 +32,33 @@ IJLMNOPQRSTUVWXYZABCDEFGHIJLMNOPQRSTUVWXYZ';
         return substr(str_shuffle($chars), 0, $num_caraters);
     }
 
-    public static function redirect($rota = '')
+    public static function redirect($rota = '', $admin = false)
     {
-        header('Location: ' . BASE_URL . "?A=$rota");
+        // Faz o redirecionamento para a URL desejada (rota)
+        if (!$admin) {
+            header("Location: " . BASE_URL . "?a=$rota");
+        } else {
+            header("Location: " . BASE_URL . "/admin?a=$rota");
+        }
+    }
+
+    public static function printData($data, $die = true)
+    {
+        if (is_array($data) || is_object($data)) {
+            echo "<pre>";
+            print_r($data);
+        } else {
+            echo "<pre>";
+            echo $data;
+        }
+        if ($die) {
+            die("FIM");
+        }
+    }
+
+    //============================ Admin Logado ============================
+    public static function adminLogado()
+    {
+        return isset($_SESSION['admin']);
     }
 }

@@ -1,4 +1,4 @@
-div class="container">
+<div class="container">
 <div class="row my-5">
     <div class="col-sm-4 offset-sm-4">
         <div>
@@ -14,9 +14,9 @@ div class="container">
                     <input type="password" name="text_password" id=""
                         placeholder="Password" required class="form-control">
                 </div>
-                <div class=" text-center my-3">
-                    <h3 class="text-center"></h3> <input
-                        type="submit" value="Login" class="btn btn-primary">
+                <div class="text-center my-3">
+                    <h3 class="text-center"></h3> 
+                    <input type="submit" value="Login" class="btn btn-primary">
                 </div>
             </form>
             <?php if (isset($_SESSION['erro'])) : ?>

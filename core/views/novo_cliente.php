@@ -6,43 +6,43 @@
                 <!-- email -->
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" name="text_email" placeholder="Email" value="testegmail@gmail.com"
+                    <input type="email" name="text_email" placeholder="Email"
                         class="form-control" required>
                 </div>
                 <!-- password - senha1 -->
                 <div class="form-group">
                     <label>Senha</label>
-                    <input type="password" name="text_senha_1" placeholder="Senha" value="123"
+                    <input type="password" name="text_senha_1" placeholder="Senha"
                         class="form-control" required>
                 </div>
                 <!-- password - senha2 -->
                 <div class="form-group">
                     <label>Confirmar Senha</label>
-                    <input type="password" name="text_senha_2" placeholder="Confirmar Senha" value="123"
+                    <input type="password" name="text_senha_2" placeholder="Confirmar Senha" 
                         class="form-control" required>
                 </div>
                 <!-- password - senha 2campo obrigatório -->
                 <div class="my-3">
                     <label>Nome Completo</label>
-                    <input type="text" name="text_nome_completo" value="qwerttyN"
+                    <input type="text" name="text_nome_completo" value=
                         placeholder="Nome Completo " class="form-control" required>
                 </div>
                 <!-- Morada campo obrigatório-->
                 <div class="my-3">
                     <label>Morada</label>
-                    <input type="text" name="text_morada" placeholder="Morada " value="qwertyyM"
+                    <input type="text" name="text_morada" placeholder="Morada" 
                         class="form-control" required>
                 </div>
                 <!-- Cidade -campo obrigatório -->
                 <div class="my-3">
                     <label>Cidade</label>
-                    <input type="text" name="text_cidade" placeholder="Cidade " value="qwerttyC"
+                    <input type="text" name="text_cidade" placeholder="Cidade" 
                         class="form-control" required>
                 </div>
                 <!-- Telefone -Não é Obrigatório, retirar required-->
                 <div class="my-3">
                     <label>Telefone</label>
-                    <input type="text" name="text_telefone" value="123123123"
+                    <input type="text" name="text_telefone" value=
                         placeholder="Telefone " class="form-control">
                 </div>
                 <!-- Telefone -Não é Obrigatório, retirar required-->

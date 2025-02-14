@@ -5,7 +5,7 @@ use core\classes\store;
 
 <div class="container-fluid navegacao">
     <div class="row">
-        <div class="col-6 p-3">
+        <div class="col-5 text-right p-3">
             <a href="?a=inicio">
                 <?= APP_NAME ?>
             </a>

@@ -1,7 +1,11 @@
 <?php
+use core\classes\store;
 
 $rotas = [
     'inicio' => 'admin@index',
+    
+    'admin_login' => 'admin@admin_login',
+    'admin_login_submit' => 'admin@admin_login_submit',
 ];
 
 $acao = 'inicio';

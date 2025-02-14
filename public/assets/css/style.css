@@ -1,6 +1,7 @@
 .navegacao{
     background-color: aliceblue;
     color: black;
+    margin-right: 100px;
 }
 
 .rodape{
@@ -11,3 +12,4 @@
 .nav-item{
     margin: 0px 10px;
 }
+

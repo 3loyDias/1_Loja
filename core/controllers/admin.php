@@ -6,6 +6,7 @@ use core\classes\Database;
 use core\classes\EnviarEmail;
 use core\classes\Store;
 use core\models\AdminModel;
+use core\models\Clientes;
 
 class admin
 {
@@ -26,7 +27,6 @@ class admin
             'admin/layouts/footer',
             'admin/layouts/html_footer',
         ]);
-
     }
     //***************************************************************** 
     public function lista_clientes()
@@ -50,8 +50,6 @@ class admin
             'admin/layouts/footer',
             'admin/layouts/html_footer',
         ]);
-
-        
     }
 
     public function admin_login_submit()
@@ -63,6 +61,8 @@ class admin
                 return;
             }
         }
+
+
         // Validar campos vieram devidamente preenchidos
         if (
             !isset($_POST['text_admin']) ||
@@ -74,6 +74,7 @@ class admin
             store::redirect('admin_login', true);
             return;
         }
+
         // Prepara os dados para o model
         $admin = trim(strtolower($_POST['text_admin']));
         $password = trim($_POST['text_password']);
@@ -81,6 +82,7 @@ class admin
         // carrega o model e verifica se o login é correto
         $admin_model = new AdminModel();
         // Para verificar user e pass
+
         $resultado = $admin_model->validar_login($admin, $password);
         // analisa o resultado
         if (is_bool($resultado)) {
@@ -96,5 +98,60 @@ class admin
             // redirecionar para a páginal inicial Backoffice
             Store::redirect('inicio', true);
         }
+    }
+
+    public function admin_logout()
+    {
+        // Eliminar a sessão
+        unset($_SESSION['admin']);
+        unset($_SESSION['admin_utilizador']);
+        // redirecionar para a páginal inicial Backoffice
+        Store::redirect('inicio', true);
+    }
+
+    public function admin_clientes()
+    {
+
+        $clientes = new Clientes();
+        $results = $clientes->lista_clientes();
+
+        $data = [
+            'clientes' => $results
+        ];
+
+        Store::Layout_admin([
+            'admin/layouts/html_header',
+            'admin/layouts/header',
+            'admin/admin_clientes',
+            'admin/layouts/footer',
+            'admin/layouts/html_footer',
+        ], $data);
+    }
+
+    public function cliente_delete_hard()
+    {
+        $id = $_GET['id'];
+        $clientes = new Clientes();
+        $results = $clientes->cliente_pesquisar_id($id);
+    }
+
+    public function cliente_delete_hard_confirm()
+    {
+        $id = $_GET['id'];
+        $clientes = new Clientes();
+        $results = $clientes->cliente_pesquisar_id($id);
+        $data = [
+            'cliente' => $results
+        ];
+
+        Store::Layout_admin([
+            'admin/layouts/html_header',
+            'admin/layouts/header',
+            'admin/cliente_delete_hard_confirm',
+            'admin/layouts/footer',
+            'admin/layouts/html_footer',
+        ], $data);
+        
+        Store::redirect('admin_clientes', true);
     }
 }

@@ -19,12 +19,15 @@
                     <input type="submit" value="Login" class="btn btn-primary">
                 </div>
             </form>
-            <?php if (isset($_SESSION['erro'])) : ?>
-                <div class="alert alert-danger text-center">
-                    <?= $_SESSION['erro'] ?>
-                    <?php unset($_SESSION['erro']) ?>
-                </div>
-            <?php endif; ?>
+            <!-- SweetAlert error -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                    <script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: '<?= $_SESSION['erro'] ?>',
+                        });
+                    </script>
         </div>
     </div>
 </div>

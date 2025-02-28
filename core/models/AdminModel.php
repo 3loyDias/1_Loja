@@ -12,25 +12,32 @@ class AdminModel
     // ADMIN - VALIDAR LOGIN
     public function validar_login($utilizador_admin, $password)
     {
-        
-        // Vai verificar se o login é válido
+          // Vai verificar se o login é válido
         $parametros = [
             ':utilizador_admin' => $utilizador_admin
         ];
+     
         $bd = new Database();
         $resultados = $bd->select("
             SELECT * FROM admins 
             WHERE utilizador = :utilizador_admin 
             AND deleted_at IS NULL", $parametros);
+
+            // echo '<pre>';
+            // print_r($resultados);
+            // die('fim');
         if (count($resultados) != 1) {
+            
             // Não existe Admin
             return false;
         } else {
             // Temos utilizador Admin, verifcar a password
             // Que está codificada
+          
             $utilizador_admin = $resultados[0];
+
             // Verifar a pass
-            if (!password_verify($password, $utilizador_admin->password)) {
+            if (!password_verify($password, $utilizador_admin->senha)) {
                 // password inválida
                 return false;
             } else {

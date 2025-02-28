@@ -119,4 +119,28 @@ class Clientes
             return $utilizador;
         }
     }
+
+    //============================ Listar Clientes ============================
+    public function lista_clientes()
+    {
+        $bd = new Database();
+        $resultados = $bd->select(
+            'SELECT * FROM clientes'
+        );
+        return $resultados;
+    }
+
+    //============================ Pesquisar Cliente por ID ============================
+    public function cliente_pesquisar_id($id)
+    {
+        $bd = new Database();
+        $parametros = [
+            ':id' => strtolower(trim($id))
+        ];
+        $resultados = $bd->select(
+            'SELECT * FROM clientes WHERE id_cliente = :id',
+            $parametros
+        );
+        return $resultados[0];
+    }
 };

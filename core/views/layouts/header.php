@@ -3,26 +3,26 @@
 use core\classes\store;
 ?>
 
-<div class="container-fluid navegacao">
-    <div class="row">
-        <div class="col-5 text-right p-3">
+<div class="container navegacao">
+    <div class="row d-flex justify-content-between align-items-center">
+        <div class="col-auto logo">
             <a href="?a=inicio">
-                <?= APP_NAME ?>
+                <img src="assets/images/logo-w.png" alt="Logo da Empresa" class="logo-img">
             </a>
         </div>
-        <div class="col-6 text-right p-3">
-            <a href="?a=inicio" class="nav-item">Inicio</a>
-            <a href="?a=loja" class="nav-item">Loja</a>
-            <!-- Verifica se existe cliente na sessão -->
+        <div class="col-auto menu">
+            <a href="?a=inicio" class="button"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="?a=loja" class="button"><i class="fa-solid fa-shop"></i> Loja</a>
+            
             <?php if (store::clienteLogado()) : ?>
-                <a href="?a=logout" class="nav-item">Logout</a>
-                <a href="?a=minha_conta" class="nav-item">
+                <a href="?a=logout" class="button">Logout</a>
+                <a href="?a=minha_conta" class="button">
                     <i class="fas fa-user mr-6"></i> <?= $_SESSION['utilizador'] ?></a>
             <?php else : ?>
-                <a href="?a=login" class="nav-item"><i class="fas fa-sign-out-alt"></i></a>
-                <a href="?a=novo_cliente" class="nav-item">Registrar</a>
+                <a href="?a=login" class="button"><i class="fas fa-sign-out-alt"></i> Login</a>
             <?php endif; ?>
-            <a href="?a=carrinho"><i class="fa-solid fa-cart-shopping"></i></a>
+            
+            <a href="?a=carrinho" class="button"><i class="fa-solid fa-cart-shopping"></i> Carrinho</a>
             <span class="badge bg-warning"></span>
         </div>
     </div>

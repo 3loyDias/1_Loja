@@ -1,7 +1,6 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-6 offset-sm-3"></div>
-        LOGIN
     </div>
 </div>
 <div class="container">
@@ -12,25 +11,33 @@
 
                 <form action="?a=login_submit" method="post">
                     <div class="my-3">
-                        <label>Utilizador:</label>
+                        <label>Email:</label>
                         <input type="email" name="text_utilizador" id=""
-                            placeholder="Utilizador" required class="form-control">
-                    </div>
-                    <div class="my-3">
-                        <label>Password::</label>
-                        <input type="password" name="text_password" id=""
-                            placeholder="Password" required class="form-control">
+                            placeholder="Email:" required class="form-control">
                     </div>
                     <div class="my-3">
                         <label>Password:</label>
-                        <input type="submit" value="Login" class="btn btn-primary">
+                        <input type="password" name="text_password" id=""
+                            placeholder="Password" required class="form-control">
                     </div>
+                    <div class="my-3 text-center">
+                        <input type="submit" value="Login" class="btn btn-primary ">
+                    </div>
+                    <div class="my-3 text-center">
+                        <a href="?a=novo_cliente" class="text-center">Não tens conta registrada?</a>
+                    </div>
+                    
                 </form>
                 <?php if (isset($_SESSION['erro'])) : ?>
-                    <div class="alert alert-danger text-center">
-                        <?= $_SESSION['erro'] ?>
-                        <?php unset($_SESSION['erro']) ?>
-                    </div>
+                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                    <script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: '<?= $_SESSION['erro'] ?>',
+                        });
+                    </script>
+                    <?php unset($_SESSION['erro']) ?>
                 <?php endif; ?>
             </div>
         </div>

@@ -24,8 +24,8 @@
                 <!-- password - senha 2campo obrigatório -->
                 <div class="my-3">
                     <label>Nome Completo</label>
-                    <input type="text" name="text_nome_completo" value=
-                        placeholder="Nome Completo " class="form-control" required>
+                    <input type="text" name="text_nome_completo"
+                        placeholder="Nome Completo" class="form-control" required>
                 </div>
                 <!-- Morada campo obrigatório-->
                 <div class="my-3">
@@ -42,7 +42,7 @@
                 <!-- Telefone -Não é Obrigatório, retirar required-->
                 <div class="my-3">
                     <label>Telefone</label>
-                    <input type="text" name="text_telefone" value=
+                    <input type="text" name="text_telefone"
                         placeholder="Telefone " class="form-control">
                 </div>
                 <!-- Telefone -Não é Obrigatório, retirar required-->

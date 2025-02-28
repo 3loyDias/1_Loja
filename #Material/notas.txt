@@ -33,3 +33,4 @@ define("EMAIL_FROM", "");
 define("EMAIL_PASS", "");
 define("EMAIL_PORT", 465);
 define('BASE_URL', 'http://localhost/');
+

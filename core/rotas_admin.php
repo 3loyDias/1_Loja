@@ -9,6 +9,7 @@ $rotas = [
     // Manipulção com Clientes
     'cliente_delete_hard' => 'admin@cliente_delete_hard',
     'cliente_delete_hard_confirm' => 'admin@cliente_delete_hard_confirm',
+    'processa_delete_cliente' => 'admin@processa_delete_cliente',
     
     // Manipulção com contas do admin
     'admin_login' => 'admin@admin_login',

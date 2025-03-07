@@ -143,4 +143,35 @@ class Clientes
         );
         return $resultados[0];
     }
+
+
+    //============================ Buscar Id Cliente ============================
+    public static function buscarClienteporId($id)
+    {
+        $db = new Database();
+        $sql = "SELECT * FROM clientes WHERE id_cliente = :id LIMIT 1";
+        $params = [':id' => $id];
+
+        $resultado = $db->select($sql, $params);
+
+        return count($resultado) > 0 ? $resultado[0] : null;
+    }
+
+    //============================ Apagar Cliente ============================
+    public function apagarCliente($id_cliente)
+{
+    $bd = new Database();
+
+    // Verifica se o cliente existe antes de apagar
+    $cliente = $this->buscarClientePorId($id_cliente);
+    if (!$cliente) {
+        return false; // Cliente não encontrado
+    }
+
+    // Query para apagar o cliente
+    $sql = "DELETE FROM clientes WHERE id_cliente = :id_cliente";
+    $parametros = [':id_cliente' => $id_cliente];
+
+    return $bd->delete($sql, $parametros); // Se 'delete' existir
+}
 };

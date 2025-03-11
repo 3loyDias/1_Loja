@@ -8,61 +8,41 @@ use core\classes\Store;
 use core\models\AdminModel;
 use core\models\Clientes;
 
-class Admin
+class admin
 {
-    // Utilizador: admin@admin.com
-    // Senha: 123456
+
     public function index()
     {
+
+        // VERIFICA SE EXISTE SESSÃO ADMIN ABERTA
         if (!Store::adminLogado()) {
             Store::redirect('admin_login', true);
             return;
         }
-
-        // Carregar o layout do Backoffice com a página de clientes
-        Store::Layout_admin([
+        //apresenta backoffice
+        Store::Layout_Admin([
             'admin/layouts/html_header',
             'admin/layouts/header',
-            'admin/inicio', // A view que será carregada
+            'admin/home',
             'admin/layouts/footer',
             'admin/layouts/html_footer',
         ]);
     }
-
-    // ******************* Método corrigido: listar_clientes() *******************
-    public function listar_clientes()
+    //***************************************************************** 
+    public function lista_clientes()
     {
-        // Criar instância do modelo Clientes
-        $clientesModel = new Clientes();
-
-        // Obter a lista de clientes do banco de dados
-        $clientes = $clientesModel->lista_clientes();
-
-        // Enviar os dados para a View
-        $data = [
-            'clientes' => $clientes
-        ];
-
-        // Carregar o layout do Backoffice
-        Store::Layout_admin([
-            'admin/layouts/html_header',
-            'admin/layouts/header',
-            'admin/listar_clientes', // Arquivo de view separado
-            'admin/layouts/footer',
-            'admin/layouts/html_footer',
-        ], $data);
+        // Lista de lista_clientes
     }
-
-    // ******************* Método admin_login() ****************************
+    //***************************************************************** 
     public function admin_login()
     {
-        // Verifica se já existe sessão admin aberta
+        // VERIFICA SE EXISTE SESSÃO ADMIN ABERTA
         if (Store::adminLogado()) {
             Store::redirect('inicio', true);
             return;
         }
-
-        // Apresenta backoffice com o quadro de login
+        //apresenta backoffice
+        // QUADRO DE LOGIN
         Store::Layout_admin([
             'admin/layouts/html_header',
             'admin/layouts/header',
@@ -72,87 +52,124 @@ class Admin
         ]);
     }
 
-    public function admin_logout()
-    {
-        // Destroi a sessão do administrador e redireciona para a página de login
-        session_start();
-        session_destroy();
-        \core\classes\Store::redirect('admin_logout');
-    }
-    // ******************* Método admin_login_submit() ****************************
     public function admin_login_submit()
     {
-        if (Store::adminLogado()) {
-            Store::redirect('inicio', true);
-            return;
-        }
-
+        // veriifca se foi efetuado um post do Formulário de Login Admin
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            Store::redirect('admin_login', true);
-            return;
+            if (Store::adminLogado()) {
+                Store::redirect('inicio', true);
+                return;
+            }
         }
 
+
+        // Validar campos vieram devidamente preenchidos
         if (
             !isset($_POST['text_admin']) ||
             !isset($_POST['text_password']) ||
             !filter_var(trim($_POST['text_admin']), FILTER_VALIDATE_EMAIL)
         ) {
-            $_SESSION['login_erro'] = 'Email ou Senha Inválidos!';
-            Store::redirect('admin_login', true);
+            // erro de preenchimento do form
+            $_SESSION['erro'] = 'Login Inválido';
+            store::redirect('admin_login', true);
             return;
         }
 
+        // Prepara os dados para o model
         $admin = trim(strtolower($_POST['text_admin']));
         $password = trim($_POST['text_password']);
-
+        // Ir à bd (ver login)
+        // carrega o model e verifica se o login é correto
         $admin_model = new AdminModel();
-        $resultado = $admin_model->validar_login($admin, $password);
+        // Para verificar user e pass
 
+        $resultado = $admin_model->validar_login($admin, $password);
+        // analisa o resultado
         if (is_bool($resultado)) {
-            $_SESSION['login_erro'] = 'Senha ou Email Inválidos!';
+            //Login inválido
+            $_SESSION['erro'] = 'Login Inválido';
             Store::redirect('admin_login', true);
             return;
         } else {
+            // Login Válido, criar sessão admin
+            // Coloca os dados na sessão / Criar sessão do administrador
             $_SESSION['admin'] = $resultado->id_admin;
             $_SESSION['admin_utilizador'] = $resultado->utilizador;
-
-            // Define uma variável de sessão para exibir o SweetAlert de sucesso
-            $_SESSION['login_sucesso'] = true;
-
+            // redirecionar para a páginal inicial Backoffice
             Store::redirect('inicio', true);
         }
     }
 
-    // ******************* Método cliente_apagar_hard() ****************************
-    public function cliente_apagar_Hard()
+    public function admin_logout()
     {
-
-        //
-        //primeiro fazer validações
-        if (!isset($_GET['id'])) {
-            Store::redirect('listar_clientes', true);
-            //Sai
-        }
-
-        //agora pegamos no id
-        //e executamos CRUD, a parte do Delete
-
-        $id = $_GET['id'];
-
-        //Instanciar o nosso model
-        $cliente = new Clientes();
-        $results = $cliente->cliente_apagar_hard($id);
-        Store::redirect('listar_clientes', true);
-        return;
+        // Eliminar a sessão
+        unset($_SESSION['admin']);
+        unset($_SESSION['admin_utilizador']);
+        // redirecionar para a páginal inicial Backoffice
+        Store::redirect('inicio', true);
     }
 
-    // ******************* Método cliente_apagar_hard_confurn() ****************************
-    public function cliente_apagar_Hard_confirm()
+    public function admin_clientes()
     {
-        //recebe o id do cliente
-        //Instancia o modelclientes
-        //no model cria um metodo para trazer todos os dados do cliente   
-        //Apresentar a view de confirmacao com os dados do cliente
 
+        $clientes = new Clientes();
+        $results = $clientes->lista_clientes();
+
+        $data = [
+            'clientes' => $results
+        ];
+
+        Store::Layout_admin([
+            'admin/layouts/html_header',
+            'admin/layouts/header',
+            'admin/admin_clientes',
+            'admin/layouts/footer',
+            'admin/layouts/html_footer',
+        ], $data);
+    }
+
+    public function cliente_delete_hard()
+    {
+        $id = $_GET['id'];
+        $clientes = new Clientes();
+        $results = $clientes->cliente_pesquisar_id($id);
+    }
+
+    public function cliente_delete_hard_confirm()
+    {
+        $id = $_GET['id'];
+        $clientes = new Clientes();
+        $results = $clientes->cliente_pesquisar_id($id);
+        $data = [
+            'cliente' => $results
+        ];
+
+        Store::Layout_admin([
+            'admin/layouts/html_header',
+            'admin/layouts/header',
+            'admin/cliente_delete_hard_confirm',
+            'admin/layouts/footer',
+            'admin/layouts/html_footer',
+        ], $data);
+        
+        Store::redirect('admin_clientes', true);
+    }
+
+    public function processa_delete_cliente()
+    {
+        $id = $_GET['id'];
+        $clientes = new Clientes();
+        $clientes->apagarCliente($id);
+        store::Layout_Admin([
+            'admin/layouts/html_header',
+            'admin/layouts/header',
+            'admin/cliente_delete_hard_confirm',
+            'admin/layouts/footer',
+            'admin/layouts/html_footer',
+        ]);
+        Store::redirect('admin_clientes', true);
+
+        
     }
 }
+

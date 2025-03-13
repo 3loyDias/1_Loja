@@ -159,19 +159,42 @@ class Clientes
 
     //============================ Apagar Cliente ============================
     public function apagarCliente($id_cliente)
-{
-    $bd = new Database();
+    {
+        $bd = new Database();
 
-    // Verifica se o cliente existe antes de apagar
-    $cliente = $this->buscarClientePorId($id_cliente);
-    if (!$cliente) {
-        return false; // Cliente não encontrado
+        // Verifica se o cliente existe antes de apagar
+        $cliente = $this->buscarClienteporId($id_cliente);
+        if (!$cliente) {
+            return false; // Cliente não encontrado
+        }
+
+        // Query para apagar o cliente
+        $sql = "DELETE FROM clientes WHERE id_cliente = :id_cliente";
+        $parametros = [':id_cliente' => $id_cliente];
+
+        return $bd->delete($sql, $parametros);
     }
 
-    // Query para apagar o cliente
-    $sql = "DELETE FROM clientes WHERE id_cliente = :id_cliente";
-    $parametros = [':id_cliente' => $id_cliente];
+    /**
+     * Verifica se um email já existe na base de dados (excluindo o cliente atual)
+     */
+    public function emailExiste($email, $id_cliente = null) {
+        $bd = new Database();
+        
+        // Preparar a query base
+        $sql = "SELECT id_cliente FROM clientes WHERE email = :email AND deleted_at IS NULL";
+        $params = [':email' => $email];
 
-    return $bd->delete($sql, $parametros); // Se 'delete' existir
-}
+        // Se foi fornecido um ID, excluir o cliente atual da verificação
+        if ($id_cliente !== null) {
+            $sql .= " AND id_cliente != :id_cliente";
+            $params[':id_cliente'] = $id_cliente;
+        }
+
+        // Executar a query
+        $resultados = $bd->select($sql, $params);
+        
+        // Retorna true se encontrou algum resultado
+        return count($resultados) > 0;
+    }
 };

@@ -105,20 +105,21 @@ class Database
         // Executa funcao de pesquisa de SQL
         $this->ligar();
         // todos os selects vao ter resultados
-        $resultado = null;
+        $resultado = false;
 
         try {
             if (!empty($parametros)) {
                 $executar = $this->ligacao->prepare($sql);
-                $executar->execute($parametros);
+                $resultado = $executar->execute($parametros);
             } else {
                 $executar = $this->ligacao->prepare($sql);
-                $executar->execute();
+                $resultado = $executar->execute();
             }
         } catch (\PDOException $e) {
             return false;
         }
         $this->desligar();
+        return $resultado;
     }
     //====================================================================================================
     // Delete tambem vai ter o meu sql e ter parametros
@@ -132,20 +133,21 @@ class Database
         // Executa funcao de pesquisa de SQL
         $this->ligar();
         // todos os selects vao ter resultados
-        $resultado = null;
+        $resultado = false;
 
         try {
             if (!empty($parametros)) {
                 $executar = $this->ligacao->prepare($sql);
-                $executar->execute($parametros);
+                $resultado = $executar->execute($parametros);
             } else {
                 $executar = $this->ligacao->prepare($sql);
-                $executar->execute();
+                $resultado = $executar->execute();
             }
         } catch (\PDOException $e) {
             return false;
         }
         $this->desligar();
+        return $resultado;
     }
     //====================================================================================================
     // STATEMENT tambem vai ter o meu sql e ter parametros

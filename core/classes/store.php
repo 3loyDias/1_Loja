@@ -39,6 +39,11 @@ class store
         return isset($_SESSION['cliente']);
     }
 
+    public static function adminLogado()
+    {
+        return isset($_SESSION['admin']);
+    }
+
     public static function criarHash($num_caraters = 12)
     {
         $chars =
@@ -69,11 +74,5 @@ IJLMNOPQRSTUVWXYZABCDEFGHIJLMNOPQRSTUVWXYZ';
         if ($die) {
             die("FIM");
         }
-    }
-
-    //============================ Admin Logado ============================
-    public static function adminLogado()
-    {
-        return isset($_SESSION['admin']);
     }
 }

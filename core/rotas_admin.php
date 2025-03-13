@@ -10,11 +10,17 @@ $rotas = [
     'cliente_delete_hard' => 'admin@cliente_delete_hard',
     'cliente_delete_hard_confirm' => 'admin@cliente_delete_hard_confirm',
     'processa_delete_cliente' => 'admin@processa_delete_cliente',
+    'cliente_atualizar' => 'admin@cliente_atualizar',
+    'cliente_delete' => 'admin@cliente_delete',
+    'novo_cliente' => 'admin@novo_cliente',
+    'criar_cliente' => 'admin@criar_cliente',
     
     // Manipulção com contas do admin
     'admin_login' => 'admin@admin_login',
     'admin_login_submit' => 'admin@admin_login_submit',
     'admin_logout' => 'admin@admin_logout',
+    
+    
 ];
 
 $acao = 'inicio';

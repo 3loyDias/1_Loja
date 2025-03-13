@@ -1,0 +1,349 @@
+/* Variável para indicar que o CSS foi carregado */
+:root {
+    --css-loaded: "true";
+}
+
+/* Estilos gerais do painel administrativo */
+body.admin-page {
+    background-color: #121212;
+    color: #f1f1f1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Quando o CSS é carregado, exibir os menus */
+body.admin-page .admin-nav {
+    display: flex !important;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+
+body.admin-page .mobile-nav-toggle {
+    display: block !important;
+}
+
+body.admin-page a {
+    text-decoration: none;
+}
+
+/* Override para Bootstrap */
+body.admin-page .table {
+    color: #f1f1f1;
+}
+
+body.admin-page .card {
+    background-color: #222;
+    border-color: #333;
+}
+
+body.admin-page .modal-content {
+    background-color: #222;
+    color: #f1f1f1;
+}
+
+body.admin-page .form-control {
+    background-color: #333;
+    color: #f1f1f1;
+    border-color: #444;
+}
+
+body.admin-page .form-control:focus {
+    background-color: #333;
+    color: #f1f1f1;
+}
+
+/* Header Styles */
+.admin-header {
+    background-color: #1a1a1a;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 0.75rem;
+}
+
+.logo-wrapper {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-img {
+    height: 45px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.logo-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 193, 7, 0.3) 0%, rgba(255, 193, 7, 0) 70%);
+    animation: pulse 3s infinite;
+    z-index: 1;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-name {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.brand-tagline {
+    color: #ffc107;
+    font-size: 0.75rem;
+    opacity: 0.8;
+}
+
+.admin-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-item {
+    position: relative;
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-item i {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.nav-item:hover i {
+    transform: translateY(-3px);
+}
+
+.profile-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+}
+
+.profile-avatar {
+    width: 30px;
+    height: 30px;
+    background-color: #ffc107;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.25rem;
+    color: #1a1a1a;
+}
+
+.header-spacer {
+    height: 80px;
+}
+
+/* Footer Styles */
+.admin-footer {
+    background-color: #1a1a1a;
+    color: #f1f1f1;
+    padding: 3rem 0 1.5rem;
+    margin-top: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-logo-container {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.footer-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+    filter: brightness(0) invert(1);
+}
+
+.logo-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 193, 7, 0.3) 30%, rgba(255, 193, 7, 0) 70%);
+    animation: pulse 3s infinite;
+    z-index: 1;
+}
+
+.footer-title {
+    color: #fff;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.footer-title:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(to right, #ffc107, transparent);
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-link {
+    color: #ddd;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.footer-link i {
+    color: #ffc107;
+    font-size: 0.75rem;
+    transition: transform 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #fff;
+    padding-left: 0.5rem;
+}
+
+.footer-link:hover i {
+    transform: translateX(5px);
+}
+
+.social-link {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background-color: #ffc107;
+    color: #1a1a1a;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: -60px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ffc107;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.back-to-top.active {
+    bottom: 30px;
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px);
+}
+
+/* Animações */
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0.95);
+        opacity: 0.5;
+    }
+}
+
+/* Mobile Styles */
+@media (max-width: 991px) {
+    .admin-nav {
+        display: none;
+    }
+    
+    .mobile-nav-toggle {
+        display: block;
+    }
+}

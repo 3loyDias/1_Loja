@@ -64,4 +64,11 @@ class AdminModel
         // Aqui podes renderizar a página/modal com os dados do cliente
         require_once 'views/admin/cliente_delete_hard_confirm.php';
     }
+
+    public function cliente_editar()
+    {
+        $id = $_GET['id'];
+        $cliente = Clientes::buscarClienteporId($id);
+        require_once 'views/admin/cliente_editar.php';
+    }
 }

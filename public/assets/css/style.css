@@ -5,44 +5,40 @@
   --card-bg: #fff;
   --card-shadow: rgba(0, 0, 0, 0.1);
   --transition-speed: 0.3s;
+  --primary-color: #5a90fc;
+  --dark-bg: #313131;
 }
 
 body {
   font-family: Arial, sans-serif;
   background: #ecf0f1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .navegacao {
   color: aliceblue;
-  /* Add your background pattern here */
-  background-color: #313131;
-  background-image: radial-gradient(
-    rgba(255, 255, 255, 0.171) 2px,
-    transparent 0
-  );
+  background-color: var(--dark-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0);
   background-size: 30px 30px;
   background-position: -5px -5px;
-  max-width: 2555px; /* Limita a largura do menu */
-  margin: 0 auto; /* Centraliza a navegação */
-  padding: 10px 15px; /* Ajusta o espaçamento */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 10px 15px;
 }
 
 .menu {
   display: flex;
-  gap: 15px; /* Espaçamento entre os itens */
+  gap: 15px;
 }
 
 .rodape {
-  font-size: 20px;
-  color: aliceblue;
-  /* Add your background pattern here */
-  background-color: #5f5f5f;
-  background-image: radial-gradient(
-    rgba(255, 255, 255, 0.171) 2px,
-    transparent 0
-  );
+  background-color: var(--dark-bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.171) 2px, transparent 0);
   background-size: 30px 30px;
   background-position: -5px -5px;
+  color: aliceblue;
+  margin-top: auto;
 }
 
 .nav-item {
@@ -52,8 +48,8 @@ body {
 
 /* UNIVERSE.IO */
 a.button {
-  display: inline-block; /* Garante que o link tenha formato de botão */
-  padding: 12px 35px;
+  display: inline-block;
+  padding: 8px 20px;
   border-radius: 100px;
   background-color: rgb(158, 158, 158);
   color: #ffffff;
@@ -61,11 +57,11 @@ a.button {
   text-decoration: none;
   text-align: center;
   transition: all 0.5s;
-  -webkit-transition: all 0.5s;
+  font-size: 0.95rem;
 }
 
 a.button:hover {
-  background-color: #5a90fc;
+  background-color: var(--primary-color);
   box-shadow: 0 0 20px #65656550;
   transform: scale(1.1);
 }
@@ -73,7 +69,6 @@ a.button:hover {
 a.button:active {
   background-color: #7d7d7d;
   transition: all 0.25s;
-  -webkit-transition: all 0.25s;
   box-shadow: none;
   transform: scale(0.98);
 }
@@ -103,8 +98,8 @@ a.button:active {
 }
 
 .logo-img {
+  height: 40px;
   width: auto;
-  height: 25%;
 }
 
 /* admin panel */
@@ -224,6 +219,19 @@ a.button:active {
     margin-left: 200px;
     width: calc(100% - 200px);
   }
+
+  a.button {
+    padding: 6px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .logo-img {
+    height: 35px;
+  }
+  
+  .navegacao {
+    padding: 8px 10px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -260,4 +268,69 @@ a.button:active {
   .topbar h1 {
     margin-bottom: 10px;
   }
+
+  .button span {
+    display: none;
+  }
+  
+  a.button {
+    padding: 8px;
+  }
+  
+  .logo-img {
+    height: 30px;
+  }
+}
+
+.nav-link:not(.active):hover {
+  background-color: rgba(108, 99, 255, 0.08);
+  color: #6c63ff !important;
+}
+
+.nav-link.active {
+  background-color: #6c63ff !important;
+  box-shadow: 0 4px 8px rgba(108, 99, 255, 0.2);
+}
+
+.dropdown-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: #6c63ff;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  background-color: #fff;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.dropdown-item {
+  transition: all 0.3s ease;
+  padding: 8px 20px;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: var(--primary-color);
+}
+
+/* Efeitos e Animações */
+.hover-scale {
+  transition: all 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.2);
+  color: var(--primary-color) !important;
+}
+
+/* Layout Principal */
+.content-wrapper {
+  flex: 1 0 auto;
+  padding-bottom: 40px;
 }
